@@ -114,7 +114,94 @@ class FonctionC
     }
 
 
+    function ViewClient(){
 
+        $sql="SELECT * from dashboard.client";
+        $db = config::getConnexion();
+        try
+        {
+            $list=$db->query($sql);
+            return $list;
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+
+    function ViewAdmin(){
+
+        $sql="SELECT * from dashboard.admin";
+        $db = config::getConnexion();
+        try
+        {
+            $list=$db->query($sql);
+            return $list;
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+
+    function ViewBox(){
+
+        $sql="SELECT * from dashboard.smart_box";
+        $db = config::getConnexion();
+        try
+        {
+            $list=$db->query($sql);
+            return $list;
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+
+
+    function ModifyClient($Full_name,$Phone_num,$Id_Login,$Password,$email,$Adress,$CIN,$Birth_Date){
+
+        $sql="UPDATE dashboard.client set Full_name='$Full_name', Phone_num='$Phone_num', Passwoard='$Password',Email='$email',Adress='$Adress',CIN='$CIN',Birth_Date='$Birth_Date' where ID_Login='$Id_Login'";
+        $db = config::getConnexion();
+        try
+        {
+            $db->query($sql);
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+
+    function modifyAdmin($Full_name,$Id_LoginAd,$Password_Admin)
+    {
+        $sql="update dashboard.categories set Full_name='$Full_name', Passwoard_Admin='$Password_Admin' where Id_Admin='$Id_LoginAd'";
+        $db = config::getConnexion();
+        try
+        {
+            $db->query($sql);
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+    }
+
+
+    function modifyBox($ID_Box,$Adress_rasp)
+    {
+        $sql="update dashboard.smart_box set ID_Box='$ID_Box' where adress_rasp='$Adress_rasp'";
+        $db = config::getConnexion();
+        try
+        {
+            $db->query($sql);
+        }
+        catch (Exception $e)
+        {
+            die('Erreur: '.$e->getMessage());
+        }
+    }
 
 
 }
