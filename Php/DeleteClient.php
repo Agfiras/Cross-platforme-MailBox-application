@@ -1,6 +1,6 @@
 <?php
-include 'D:\phpstorm project\Client.php';
-include 'D:\phpstorm project\FonctionC.php';
+include 'Client.php';
+include 'FonctionC.php';
 
 $client=new client($_GET['CIN'],NULL,NULL,NULL,NULL,NULL);
 
