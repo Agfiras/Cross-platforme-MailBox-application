@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 
 class FonctionC
 {
@@ -44,7 +45,7 @@ class FonctionC
 
 
     function AddAdmin($Admin){
-        $Full_name=$Admin->getFullName();
+        $Full_name=$Admin->getFullname();
         $Id_LoginAd=$Admin->getIdLoginAd();
         $Password=$Admin->getPasswordAdmin();
 
