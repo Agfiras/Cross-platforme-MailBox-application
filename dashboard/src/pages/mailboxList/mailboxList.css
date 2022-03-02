@@ -1,0 +1,44 @@
+.mailBoxList{
+    flex: 4;
+}
+
+.mailBoxListItem{
+    display: flex;
+    align-items: center;
+}
+
+.mailBoxListImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+.mailBoxListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.mailBoxListDelete{
+    color: rgb(255, 208, 0);
+    cursor: pointer;
+}
+.mailboxAddButton{
+    width: 150px;
+    border: none;
+    padding:5px ;
+    background-color: darkblue;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: sticky;
+    bottom:0;
+    z-index: 999;
+}

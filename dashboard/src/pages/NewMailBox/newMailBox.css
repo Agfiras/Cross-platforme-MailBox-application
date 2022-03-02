@@ -1,0 +1,51 @@
+.newMailBox {
+    flex: 4;
+    padding: 10px;
+  }
+  
+  .addMailBoxForm {
+    margin-top: 10px;
+  }
+  
+  .addMailBoxItem {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .addMailBoxItem > label {
+    color: gray;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .addMailBoxItem > input {
+    padding: 10px;
+  }
+  
+  .addMailBoxItem > select {
+    padding: 10px;
+  }
+  
+  .addMailBoxButton {
+    margin-top: 10px;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: darkblue;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .submit{
+    width: 100px;
+      border: none;
+      background-color: darkblue;
+      color: white;
+      padding: 7px 2px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+  }
