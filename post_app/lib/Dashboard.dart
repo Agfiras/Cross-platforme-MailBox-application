@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:post_app/login.dart';
+import 'package:post_app/Home.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({Key? key}) : super(key: key);

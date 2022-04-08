@@ -12,13 +12,13 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: HomePage(),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
   
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
