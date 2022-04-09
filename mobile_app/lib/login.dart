@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:post_app/Dashboard.dart';
+import 'package:post_app/onboarding.dart';
 import 'dart:convert';
 void main() => runApp( LoginScreen());
 
@@ -76,9 +76,7 @@ class HomePage extends StatelessWidget {
               ),
             )),
           
-            Pinned.fromPins(
-              Pin(size: 80.0, start: 24.0),
-              Pin(size: 90.0, middle: 0.1792),
+            Container(alignment: Alignment(-0.8, -0.7),
               child: const Text(
                 'Login',
                 style: TextStyle(
@@ -95,9 +93,8 @@ class HomePage extends StatelessWidget {
             // const SizedBox(
             //   height: 30.0,
             // ),
-           Pinned.fromPins(
-              Pin(size: 350.0, start: 23.0),
-              Pin(size: 90.0, middle: 0.45),
+           Container(alignment: Alignment(0.0,-0.15),
+           
             child:TextField(
               keyboardType: TextInputType.emailAddress,
               controller: email,
@@ -120,12 +117,8 @@ class HomePage extends StatelessWidget {
                   filled: true),
             ),
             ),
-            const SizedBox(
-              height: 50.0,
-            ),
-            Pinned.fromPins(
-              Pin(size: 350.0, start: 23.0),
-              Pin(size: 90.0, middle: 0.56),
+            
+            Container(alignment: Alignment(0.0,0.1),
             child:TextField(
               controller: password,
               obscureText: true,
@@ -147,9 +140,9 @@ class HomePage extends StatelessWidget {
                   filled: true),
             ),
             ),
-            Pinned.fromPins(
-              Pin(size: 310.0, start: 45.0),
-              Pin(size: 50.0, middle: 0.63),
+            const SizedBox(
+              height: 50.0,),
+            Container(alignment: Alignment(0.0,0.3),
             child:ButtonTheme(
                 minWidth: 200.0,
                 height: 50.0,
