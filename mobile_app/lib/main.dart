@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch().copyWith(primary: const Color(0xffffffff))),
+        colorScheme: ColorScheme.fromSwatch().copyWith(primary: const Color(0xffffffff))),
         home:  LoginScreen(),
       );
 }
