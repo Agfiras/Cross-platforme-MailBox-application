@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Home.dart';
 
 void main() {
   runApp(const Account());
@@ -28,7 +29,33 @@ class AccountState extends State<Account> {
         centerTitle: true,
         backgroundColor: Colors.purple,
         title: const Text('Account',style: TextStyle(color: Colors.white),),
-        leading: const Icon(Icons.arrow_back_outlined,color: Colors.white,),
+        leading: IconButton(onPressed: (() {Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));}),
+        icon:const Icon(Icons.arrow_back_outlined),color: Colors.white,),
+      ),
+      body: Stack(
+        children: <Widget>[
+          Container(alignment: const Alignment(0, -0.8),
+          child: Container(
+            width: 350,
+            height: 450,
+            decoration: BoxDecoration(
+              color: Colors.white,
+                borderRadius: BorderRadius.circular(24.0),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x29000000),
+                    offset: Offset(0, 3),
+                    blurRadius: 10,
+                  ),
+                ],
+            ),
+          ),
+          ),
+          Align(alignment: Alignment(12, 1),
+          child: 
+          
+          ),
+          ]
       ),
     );
   }
