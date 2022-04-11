@@ -18,7 +18,7 @@ class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavBar(),
+      drawer:  NavBar(),
       appBar: AppBar(
         bottom: PreferredSize(
           preferredSize: const Size(5, 5),
