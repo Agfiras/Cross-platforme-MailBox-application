@@ -32,7 +32,7 @@ class DashBoard extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0),side: const BorderSide(color: Colors.purple)) ,
                     onPressed: () => goHome(context), child: const Text('Skip',style: TextStyle(color: Colors.white),),
                     ),
-                                        decoration: getPageDecoration(),
+                    decoration: getPageDecoration(),
                     ),
           ],
           done: const Text('Read', style: TextStyle(fontWeight: FontWeight.w600)),

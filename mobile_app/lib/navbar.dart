@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:post_app/login.dart';
+import 'package:post_app/account.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({ Key? key }) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -12,9 +13,10 @@ class NavBar extends StatelessWidget {
       ListView(
         children:[
           const SizedBox(height:20),
-          const ListTile(
-            leading: Icon(Icons.account_circle,color: Colors.white,),
-            title: Text('Account',style: TextStyle(fontSize:20.0,color: Colors.white),),
+          ListTile(
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => const Account())));},
+            leading: const Icon(Icons.account_circle,color: Colors.white,),
+            title: const Text('Account',style: TextStyle(fontSize:20.0,color: Colors.white),),
             ),
           const SizedBox(height:530),
           const ListTile(
