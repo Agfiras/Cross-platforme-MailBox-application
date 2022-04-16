@@ -4,13 +4,14 @@
         echo "Database connection failed";
     }
 
-	$query = $db->query("SELECT * FROM signin");
-    $result = array();
+	$query = "SELECT * FROM signin";
+    $result = mysqli_query($db, $query);
 
-    while ($rowData = $query->fetch_assoc()) {
-        $result[] = $rowData;
+    $emparray = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $emparray[] = $row;
     }
-    
-    echo json_encode($result);
+    echo json_encode($emparray);
 
 ?>
