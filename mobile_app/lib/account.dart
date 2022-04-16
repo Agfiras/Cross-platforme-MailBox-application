@@ -3,22 +3,52 @@ import 'Home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<show> showUser() async {
-  var url = "http://192.168.1.111/ViewUsername.php";
-  var response = await http.get(Uri.parse(url));
-  return show.fromJson(jsonDecode(response.body));
+// Future<show> showUser() async {
+//   var url = "http://192.168.1.111/ViewUsername.php";
+//   final response = await http.get(Uri.parse(url));
+//   return show.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+// }
+Future<Album> fetchAlbum() async {
+  final response =
+      await http.get(Uri.parse('http://192.168.1.111/ViewUsername.php'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
 }
 
-class show {
-  final String username;
-  show({required this.username});
-  
-  factory show.fromJson(Map<String, dynamic> json) {
-    return show(
-      username: json['username'],
+class Album {
+  final String email;
+
+  const Album({
+    required this.email,
+  });
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      email: json['email'],
     );
   }
 }
+
+// class show {
+//   final String username;
+//   show({
+//     required this.username
+//     });
+
+//   factory show.fromJson(Map<String, dynamic> json) {
+//     return show(
+//       username: json['username'],
+//     );
+//   }
+// }
 
 void main() {
   runApp(const Account());
@@ -32,16 +62,32 @@ class Account extends StatefulWidget {
 }
 
 class AccountState extends State<Account> {
-  late Future<show> futureshow;
+  bool isChecked = false;
+  bool isChecked1 = false;
+
+  late Future<Album> futureAlbum;
 
   @override
   void initState() {
     super.initState();
-    futureshow = showUser();
+    futureAlbum = fetchAlbum();
   }
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      //check box color
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.purple;
+      }
+      return Colors.purple;
+    }
+    //
     return Scaffold(
       appBar: AppBar(
         bottom: PreferredSize(
@@ -97,21 +143,80 @@ class AccountState extends State<Account> {
                 image: AssetImage('assets/cyborg.png'),
               )),
             )),
+        //Show email from database
         Align(
-          alignment: Alignment(0, -0.10),
-          child: FutureBuilder<show>(
-            future: futureshow,
+          alignment: const Alignment(0, -0.3),
+          child: FutureBuilder<Album>(
+            future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.username);
+                return Text(snapshot.data!.email);
               } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
+                return Text('${snapshot.error}');
               }
-              // spinner
-              return CircularProgressIndicator();
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
             },
           ),
-        )
+        ),
+
+        const Align(
+            alignment: Alignment(-0.8, -0.4),
+            child: Text(
+              'Email :',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+        //CheckBox   
+        Align(
+          alignment: const Alignment(-0.8, -0.1),
+          child: Checkbox(
+              checkColor: Colors.white,
+              fillColor: MaterialStateProperty.resolveWith(getColor),
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = value!;
+                });
+              }),
+        ),
+        const Align(
+            alignment: Alignment(-0.4, -0.1),
+            child: Text(
+              'Push Notification',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+            //email checkbox
+            Align(
+          alignment: const Alignment(-0.8, 0),
+          child: Checkbox(
+              checkColor: Colors.white,
+              fillColor: MaterialStateProperty.resolveWith(getColor),
+              value: isChecked1,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked1 = value!;
+                });
+              }),
+        ),
+        const Align(
+            alignment: Alignment(-0.25, 0),
+            child: Text(
+              'Push Email notification',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+
       ]),
     );
   }
