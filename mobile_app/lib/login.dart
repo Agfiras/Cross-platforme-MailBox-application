@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
       );
       }
       else {
-      var url = "http://192.168.1.111/post_app/login.php";
+      var url = "http://192.168.1.111/login.php";
       var response = await http.post(Uri.parse(url), body: {
         "email": email.text,
         "password": password.text,
@@ -160,7 +160,8 @@ class HomePage extends StatelessWidget {
                   color: const Color(0xffffd500),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30))),
-                ))
+                ),
+                ),
             ),
             ],
         ));
