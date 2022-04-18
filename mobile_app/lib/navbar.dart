@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:post_app/login.dart';
 import 'package:post_app/account.dart';
+import 'Feedback.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({ Key? key }) : super(key: key);
@@ -19,7 +20,8 @@ class NavBar extends StatelessWidget {
             title: const Text('Account',style: TextStyle(fontSize:20.0,color: Colors.white),),
             ),
           const SizedBox(height:530),
-          const ListTile(
+          ListTile(
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: ((context) =>  FeedbackHome())));},
             leading:Icon(Icons.feedback,color: Colors.white,),
             title: Text('Feedback',style: TextStyle(fontSize: 20.0,color: Colors.white),),),
           ListTile(
