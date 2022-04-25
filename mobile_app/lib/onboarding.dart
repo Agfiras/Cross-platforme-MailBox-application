@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:post_app/Home.dart';
 
@@ -11,8 +12,7 @@ class DashBoard extends StatelessWidget {
           pages: [
             PageViewModel(
                 title: 'Sign in',
-                body:
-                    'when u install the box, get your login credentials and sign in',
+                body:'when u install the box, get your login credentials and sign in',
                 image: buildImage('assets/undraw_Access_account_re_8spm.png'),
                 decoration: getPageDecoration(),
                 ),
@@ -30,7 +30,10 @@ class DashBoard extends StatelessWidget {
                   minWidth: 200,
                   color: Colors.purple,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0),side: const BorderSide(color: Colors.purple)) ,
-                    onPressed: () => goHome(context), child: const Text('Skip',style: TextStyle(color: Colors.white),),
+                    onPressed: () => goHome(context), 
+                    child: Text('Skip',
+                    style:GoogleFonts.urbanist(fontSize:20,fontWeight: FontWeight.w700,color:Colors.white),
+                    ),
                     ),
                     decoration: getPageDecoration(),
                     ),
@@ -40,15 +43,15 @@ class DashBoard extends StatelessWidget {
           showDoneButton: false,
           showSkipButton: false,
           showNextButton: false,
-          skip: const Text('Skip'),
+          skip:  Text('Skip'),
           onSkip: () => goHome(context),
           dotsDecorator: getDotDecoration(),
           onChange: (index) => print('Page $index selected'),
-          globalBackgroundColor: Color(0xffffffff),
+          globalBackgroundColor: const Color(0xffffffff),
           skipOrBackFlex: 0,
           nextFlex: 0,
           baseBtnStyle: TextButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))),
-          skipStyle: TextButton.styleFrom(primary: Color(0x5C0099)),
+          skipStyle: TextButton.styleFrom(primary: Color(0x5C0099),),
         ),        
       );
      
@@ -72,9 +75,9 @@ class DashBoard extends StatelessWidget {
         ),
       );
 
-  PageDecoration getPageDecoration() => const PageDecoration(
-        titleTextStyle: TextStyle(fontSize: 28,fontFamily: 'Futura',),
-        bodyTextStyle: TextStyle(fontSize: 19,fontFamily: 'Futura Bk BT'),
+  PageDecoration getPageDecoration() =>  PageDecoration(
+        titleTextStyle: GoogleFonts.nunito(fontSize: 30,fontWeight: FontWeight.w800),
+        bodyTextStyle: GoogleFonts.hind(fontSize: 20,fontWeight: FontWeight.w300),
         imagePadding: EdgeInsets.all(24),
         
         pageColor: Colors.white,

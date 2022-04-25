@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:post_app/navbar.dart';
 import 'package:adobe_xd/pinned.dart';
 void main() {
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 
 class HomePage extends State<Home> {
   Icon cusIcon = Icon(Icons.search);
-  Widget cusSearchBar = Text("All Maills");
+  Widget cusSearchBar = Text("All Maills",style: GoogleFonts.urbanist(fontSize:20,color: Colors.white,fontWeight: FontWeight.w700),);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +57,7 @@ class HomePage extends State<Home> {
                 }
                 else{
                   this.cusIcon = Icon(Icons.search);
-                  this.cusSearchBar = Text("All Maills");
+                  this.cusSearchBar = Text("All Maills",style: GoogleFonts.urbanist(fontSize:20,color: Colors.white,fontWeight: FontWeight.w700));
                 }
               });
             },
