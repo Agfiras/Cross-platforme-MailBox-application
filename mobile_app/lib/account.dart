@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'Home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -101,9 +102,9 @@ class AccountState extends State<Account> {
         )),
         centerTitle: true,
         backgroundColor: Colors.purple,
-        title: const Text(
+        title:  Text(
           'Account',
-          style: TextStyle(color: Colors.white),
+          style: GoogleFonts.urbanist(fontSize:20,color: Colors.white,fontWeight: FontWeight.w700),
         ),
         leading: IconButton(
           onPressed: (() {
@@ -160,14 +161,11 @@ class AccountState extends State<Account> {
           ),
         ),
 
-        const Align(
-            alignment: Alignment(-0.8, -0.4),
+         Align(
+            alignment: const Alignment(-0.8, -0.4),
             child: Text(
               'Email :',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+              style: GoogleFonts.hind(fontSize: 19,color: Colors.black,fontWeight: FontWeight.w400,
               ),
             )),
         //CheckBox   
@@ -183,14 +181,11 @@ class AccountState extends State<Account> {
                 });
               }),
         ),
-        const Align(
-            alignment: Alignment(-0.4, -0.1),
+         Align(
+            alignment: const Alignment(-0.4, -0.1),
             child: Text(
               'Push Notification',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.purple,
-                fontWeight: FontWeight.bold,
+              style: GoogleFonts.urbanist(fontSize: 18,color: Colors.purple,fontWeight: FontWeight.bold,
               ),
             )),
             //email checkbox
@@ -206,14 +201,11 @@ class AccountState extends State<Account> {
                 });
               }),
         ),
-        const Align(
-            alignment: Alignment(-0.25, 0),
+         Align(
+            alignment: const Alignment(-0.25, 0),
             child: Text(
               'Push Email notification',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.purple,
-                fontWeight: FontWeight.bold,
+              style: GoogleFonts.urbanist(fontSize: 18,color: Colors.purple,fontWeight: FontWeight.bold,
               ),
             )),
 
