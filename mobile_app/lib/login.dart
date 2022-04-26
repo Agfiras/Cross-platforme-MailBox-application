@@ -13,17 +13,18 @@ import 'package:url_launcher/url_launcher.dart';
 void main() => runApp(LoginScreen());
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => HomePagestate();
@@ -41,7 +42,7 @@ Future login(BuildContext context) async {
       fontSize: 16.0,
     );
   } else {
-    var url = "http://192.168.1.111/login.php";
+    var url = "http://192.168.1.14/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": email.text,
       "password": password.text,
