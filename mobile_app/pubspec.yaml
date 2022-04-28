@@ -66,8 +66,8 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_icons:
  image_path: "assets/mailbox.png"
- image_path_android: "assets/android/mailbox.png"
- image_path_ios: "assets/ios/mailbox.png"
+ adaptive_icon_foreground: "assets/adaptive_icon.png"
+ adaptive_icon_background: "#ffffff"
  android: true
  ios: true
 # The following section is specific to Flutter.

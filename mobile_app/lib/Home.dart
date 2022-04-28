@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:post_app/navbar.dart';
 import 'package:adobe_xd/pinned.dart';
+
 void main() {
   runApp(Home());
 }
@@ -15,11 +16,16 @@ class Home extends StatefulWidget {
 
 class HomePage extends State<Home> {
   Icon cusIcon = Icon(Icons.search);
-  Widget cusSearchBar = Text("All Maills",style: GoogleFonts.urbanist(fontSize:20,color: Colors.white,fontWeight: FontWeight.w700),);
+  Widget cusSearchBar = Text(
+    "All Maills",
+    style: GoogleFonts.urbanist(
+        fontSize: 20, color: Colors.white, fontWeight: FontWeight.w700),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:  NavBar(),
+      resizeToAvoidBottomInset: false,
+      drawer: NavBar(),
       appBar: AppBar(
         bottom: PreferredSize(
           preferredSize: const Size(5, 5),
@@ -41,23 +47,25 @@ class HomePage extends State<Home> {
                   this.cusIcon = Icon(Icons.cancel);
                   this.cusSearchBar = TextField(
                     textInputAction: TextInputAction.go,
-                    decoration:InputDecoration(
-
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius:BorderRadius.circular(40),
-                        borderSide: const BorderSide(width: 2, color: Colors.white)
-                      ),
-
-                      border: InputBorder.none,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:BorderRadius.circular(40),
-                        borderSide: const BorderSide(width: 2, color: Colors.white)
-                      )),
-                      style: const TextStyle(color: Colors.white,fontSize: 16.0),);
-                }
-                else{
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40),
+                            borderSide: const BorderSide(
+                                width: 2, color: Colors.white)),
+                        border: InputBorder.none,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(40),
+                            borderSide: const BorderSide(
+                                width: 2, color: Colors.white))),
+                    style: const TextStyle(color: Colors.white, fontSize: 16.0),
+                  );
+                } else {
                   this.cusIcon = Icon(Icons.search);
-                  this.cusSearchBar = Text("All Maills",style: GoogleFonts.urbanist(fontSize:20,color: Colors.white,fontWeight: FontWeight.w700));
+                  this.cusSearchBar = Text("All Maills",
+                      style: GoogleFonts.urbanist(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700));
                 }
               });
             },
@@ -69,10 +77,10 @@ class HomePage extends State<Home> {
           )
         ],
       ),
-      body: Stack(
-        children: <Widget>[
-          //image Box
-          Container(alignment: Alignment(0.01, -0.5),
+      body: Stack(children: <Widget>[
+        //image Box
+        Container(
+          alignment: Alignment(0.01, -0.5),
           child: Container(
             width: 131.0,
             height: 221.0,
@@ -81,147 +89,143 @@ class HomePage extends State<Home> {
               image: DecorationImage(
                 image: AssetImage('assets/taxi.png'),
                 fit: BoxFit.fill,
-                ),
-                ),
-                ),
-                ),
-          // box   
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 82.0, middle: 0.6534),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xffffffff),
-                borderRadius: BorderRadius.circular(16.0),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x29000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
-                  ),
-                ],
               ),
             ),
           ),
-          //Text username
-          const Align(
-            alignment: Alignment(-0.166, 0.215),
-            child: SizedBox(
-              width: 113.0,
-              height: 16.0,
-              child: Text(
-                'To : Firas ajengui',
-                style: TextStyle(
-                  fontFamily: 'Urbane',
-                  fontSize: 13,
-                  color: Color(0xff000000),
+        ),
+        // box
+        Pinned.fromPins(
+          Pin(start: 18.0, end: 17.0),
+          Pin(size: 82.0, middle: 0.6534),
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xffffffff),
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x29000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
                 ),
-                softWrap: false,
+              ],
+            ),
+          ),
+        ),
+        //Text username
+        const Align(
+          alignment: Alignment(-0.166, 0.215),
+          child: SizedBox(
+            width: 113.0,
+            height: 16.0,
+            child: Text(
+              'To : Firas ajengui',
+              style: TextStyle(
+                fontFamily: 'Urbane',
+                fontSize: 13,
+                color: Color(0xff000000),
+              ),
+              softWrap: false,
+            ),
+          ),
+        ),
+        // image of envolope
+        Pinned.fromPins(
+          Pin(size: 54.0, start: 27.0),
+          Pin(size: 65.0, middle: 0.6532),
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/cyborg-envelope-7.png'),
+                fit: BoxFit.fill,
               ),
             ),
           ),
-          // image of envolope
-          Pinned.fromPins(
-            Pin(size: 54.0, start: 27.0),
-            Pin(size: 65.0, middle: 0.6532),
-            child:Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/cyborg-envelope-7.png'),
-                  fit: BoxFit.fill,
+        ),
+        //Date of reception
+        const Align(
+          alignment: Alignment(-0.221, 0.278),
+          child: SizedBox(
+            width: 57.0,
+            height: 12.0,
+            child: Text(
+              'Dec 10,2022',
+              style: TextStyle(
+                fontFamily: 'BR Sonoma W03',
+                fontSize: 10,
+                color: Color(0xffb7b7b7),
+                fontWeight: FontWeight.w600,
+              ),
+              softWrap: false,
+            ),
+          ),
+        ),
+        //Box
+        Pinned.fromPins(
+          Pin(start: 18.0, end: 17.0),
+          Pin(size: 82.0, middle: 0.7965),
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xffffffff),
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x29000000),
+                  offset: Offset(0, 3),
+                  blurRadius: 6,
                 ),
+              ],
+            ),
+          ),
+        ),
+        // Text username
+        const Align(
+          alignment: Alignment(-0.166, 0.476),
+          child: SizedBox(
+            width: 113.0,
+            height: 16.0,
+            child: Text(
+              'To : Firas ajengui',
+              style: TextStyle(
+                fontFamily: 'Urbane',
+                fontSize: 13,
+                color: Color(0xff000000),
+              ),
+              softWrap: false,
+            ),
+          ),
+        ),
+        //Date of recepetion
+        const Align(
+          alignment: Alignment(-0.221, 0.537),
+          child: SizedBox(
+            width: 57.0,
+            height: 12.0,
+            child: Text(
+              'Jan 10,2022',
+              style: TextStyle(
+                fontFamily: 'BR Sonoma W03',
+                fontSize: 10,
+                color: Color(0xffb7b7b7),
+                fontWeight: FontWeight.w600,
+              ),
+              softWrap: false,
+            ),
+          ),
+        ),
+        //image package
+        Pinned.fromPins(
+          Pin(size: 61.0, start: 27.0),
+          Pin(size: 46.0, middle: 0.7731),
+          child: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/bloom-yellow-box-package.png'),
+                fit: BoxFit.fill,
               ),
             ),
           ),
-          //Date of reception
-          const Align(
-            alignment: Alignment(-0.221, 0.278),
-            child: SizedBox(
-              width: 57.0,
-              height: 12.0,
-              child: Text(
-                'Dec 10,2022',
-                style: TextStyle(
-                  fontFamily: 'BR Sonoma W03',
-                  fontSize: 10,
-                  color: Color(0xffb7b7b7),
-                  fontWeight: FontWeight.w600,
-                ),
-                softWrap: false,
-              ),
-            ),
-          ),
-          //Box
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 82.0, middle: 0.7965),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xffffffff),
-                borderRadius: BorderRadius.circular(16.0),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x29000000),
-                    offset: Offset(0, 3),
-                    blurRadius: 6,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Text username
-          const Align(
-            alignment: Alignment(-0.166, 0.476),
-            child: SizedBox(
-              width: 113.0,
-              height: 16.0,
-              child: Text(
-                'To : Firas ajengui',
-                style: TextStyle(
-                  fontFamily: 'Urbane',
-                  fontSize: 13,
-                  color: Color(0xff000000),
-                ),
-                softWrap: false,
-              ),
-            ),
-          ),
-          //Date of recepetion
-          const Align(
-            alignment: Alignment(-0.221, 0.537),
-            child: SizedBox(
-              width: 57.0,
-              height: 12.0,
-              child: Text(
-                'Jan 10,2022',
-                style: TextStyle(
-                  fontFamily: 'BR Sonoma W03',
-                  fontSize: 10,
-                  color: Color(0xffb7b7b7),
-                  fontWeight: FontWeight.w600,
-                ),
-                softWrap: false,
-              ),
-            ),
-          ),
-          //image package
-          Pinned.fromPins(
-            Pin(size: 61.0, start: 27.0),
-            Pin(size: 46.0, middle: 0.7731),
-            child:
-                Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/bloom-yellow-box-package.png'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
-          ]
-          ),
-    
-    )
-    ;
+        ),
+      ]),
+    );
   }
 }
