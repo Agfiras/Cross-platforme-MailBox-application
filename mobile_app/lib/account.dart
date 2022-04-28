@@ -11,7 +11,7 @@ import 'dart:convert';
 // }
 Future<Album> fetchAlbum() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.111/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.1.14/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -88,6 +88,7 @@ class AccountState extends State<Account> {
       }
       return Colors.purple;
     }
+
     //
     return Scaffold(
       appBar: AppBar(
@@ -102,9 +103,10 @@ class AccountState extends State<Account> {
         )),
         centerTitle: true,
         backgroundColor: Colors.purple,
-        title:  Text(
+        title: Text(
           'Account',
-          style: GoogleFonts.urbanist(fontSize:20,color: Colors.white,fontWeight: FontWeight.w700),
+          style: GoogleFonts.urbanist(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.w700),
         ),
         leading: IconButton(
           onPressed: (() {
@@ -161,14 +163,17 @@ class AccountState extends State<Account> {
           ),
         ),
 
-         Align(
+        Align(
             alignment: const Alignment(-0.8, -0.4),
             child: Text(
               'Email :',
-              style: GoogleFonts.hind(fontSize: 19,color: Colors.black,fontWeight: FontWeight.w400,
+              style: GoogleFonts.hind(
+                fontSize: 19,
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
               ),
             )),
-        //CheckBox   
+        //CheckBox
         Align(
           alignment: const Alignment(-0.8, -0.1),
           child: Checkbox(
@@ -181,15 +186,18 @@ class AccountState extends State<Account> {
                 });
               }),
         ),
-         Align(
+        Align(
             alignment: const Alignment(-0.4, -0.1),
             child: Text(
               'Push Notification',
-              style: GoogleFonts.urbanist(fontSize: 18,color: Colors.purple,fontWeight: FontWeight.bold,
+              style: GoogleFonts.urbanist(
+                fontSize: 18,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
               ),
             )),
-            //email checkbox
-            Align(
+        //email checkbox
+        Align(
           alignment: const Alignment(-0.8, 0),
           child: Checkbox(
               checkColor: Colors.white,
@@ -201,14 +209,16 @@ class AccountState extends State<Account> {
                 });
               }),
         ),
-         Align(
+        Align(
             alignment: const Alignment(-0.25, 0),
             child: Text(
               'Push Email notification',
-              style: GoogleFonts.urbanist(fontSize: 18,color: Colors.purple,fontWeight: FontWeight.bold,
+              style: GoogleFonts.urbanist(
+                fontSize: 18,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
               ),
             )),
-
       ]),
     );
   }

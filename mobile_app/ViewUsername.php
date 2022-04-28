@@ -5,13 +5,12 @@
     }
 
 	$query = "SELECT * FROM signin";
-    $result = mysqli_query($db, $query);
+    $rows=array();
 
-    $emparray = array();
-    while($row =mysqli_fetch_assoc($result))
+    while($row =mysqli_fetch_array($result))
     {
-        $emparray[] = $row;
+        $rows[] = $row;
     }
-    echo json_encode($emparray);
+    echo json_encode($rows);
 
 ?>
