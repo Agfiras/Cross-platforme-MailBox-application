@@ -162,7 +162,7 @@ class HomePage extends State<Home> {
         //Box
         Pinned.fromPins(
           Pin(start: 18.0, end: 17.0),
-          Pin(size: 82.0, middle: 0.7965),
+          Pin(size: 82.0, middle: 0.82),
           child: Container(
             decoration: BoxDecoration(
               color: const Color(0xffffffff),
@@ -179,7 +179,7 @@ class HomePage extends State<Home> {
         ),
         // Text username
         const Align(
-          alignment: Alignment(-0.166, 0.476),
+          alignment: Alignment(-0.166, 0.5),
           child: SizedBox(
             width: 113.0,
             height: 16.0,
@@ -196,7 +196,7 @@ class HomePage extends State<Home> {
         ),
         //Date of recepetion
         const Align(
-          alignment: Alignment(-0.221, 0.537),
+          alignment: Alignment(-0.221, 0.55),
           child: SizedBox(
             width: 57.0,
             height: 12.0,
@@ -215,7 +215,7 @@ class HomePage extends State<Home> {
         //image package
         Pinned.fromPins(
           Pin(size: 61.0, start: 27.0),
-          Pin(size: 46.0, middle: 0.7731),
+          Pin(size: 46.0, middle: 0.8),
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
