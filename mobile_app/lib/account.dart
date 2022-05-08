@@ -11,7 +11,7 @@ import 'dart:convert';
 // }
 Future<Album> fetchAlbum() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.14/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.8.106/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -37,19 +37,6 @@ class Album {
     );
   }
 }
-
-// class show {
-//   final String username;
-//   show({
-//     required this.username
-//     });
-
-//   factory show.fromJson(Map<String, dynamic> json) {
-//     return show(
-//       username: json['username'],
-//     );
-//   }
-// }
 
 void main() {
   runApp(const Account());
@@ -146,14 +133,19 @@ class AccountState extends State<Account> {
                 image: AssetImage('assets/cyborg.png'),
               )),
             )),
+
         //Show email from database
         Align(
-          alignment: const Alignment(0, -0.3),
+          alignment: const Alignment(-0.7, -0.3),
           child: FutureBuilder<Album>(
             future: futureAlbum,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.email);
+                return Text(
+                  snapshot.data!.email,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w400),
+                );
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -164,18 +156,18 @@ class AccountState extends State<Account> {
         ),
 
         Align(
-            alignment: const Alignment(-0.8, -0.4),
+            alignment: const Alignment(-0.77, -0.4),
             child: Text(
               'Email :',
               style: GoogleFonts.hind(
                 fontSize: 19,
                 color: Colors.black,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w500,
               ),
             )),
         //CheckBox
         Align(
-          alignment: const Alignment(-0.8, -0.1),
+          alignment: const Alignment(-0.85, -0.1),
           child: Checkbox(
               checkColor: Colors.white,
               fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -187,7 +179,7 @@ class AccountState extends State<Account> {
               }),
         ),
         Align(
-            alignment: const Alignment(-0.4, -0.1),
+            alignment: const Alignment(-0.47, -0.1),
             child: Text(
               'Push Notification',
               style: GoogleFonts.urbanist(
@@ -198,7 +190,7 @@ class AccountState extends State<Account> {
             )),
         //email checkbox
         Align(
-          alignment: const Alignment(-0.8, 0),
+          alignment: const Alignment(-0.85, 0),
           child: Checkbox(
               checkColor: Colors.white,
               fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -210,7 +202,7 @@ class AccountState extends State<Account> {
               }),
         ),
         Align(
-            alignment: const Alignment(-0.25, 0),
+            alignment: const Alignment(-0.35, 0),
             child: Text(
               'Push Email notification',
               style: GoogleFonts.urbanist(
