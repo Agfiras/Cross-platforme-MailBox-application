@@ -2,6 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:post_app/navbar.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
+
+Future<User> fetchuser() async {
+  final response =
+      await http.get(Uri.parse('http://192.168.8.101/ViewUsername.php'));
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return User.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+class User {
+  final String username;
+  const User({
+    required this.username,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      username: json['username'],
+    );
+  }
+}
 
 void main() {
   runApp(Home());
@@ -14,7 +44,15 @@ class Home extends StatefulWidget {
   HomePage createState() => HomePage();
 }
 
+late Future<User> futureUser;
+
 class HomePage extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    futureUser = fetchuser();
+  }
+
   Icon cusIcon = Icon(Icons.search);
   Widget cusSearchBar = Text(
     "All Maills",
@@ -112,22 +150,27 @@ class HomePage extends State<Home> {
           ),
         ),
         //Text username
-        const Align(
-          alignment: Alignment(-0.166, 0.215),
-          child: SizedBox(
-            width: 113.0,
-            height: 16.0,
-            child: Text(
-              'To : Firas ajengui',
-              style: TextStyle(
-                fontFamily: 'Urbane',
-                fontSize: 13,
-                color: Color(0xff000000),
-              ),
-              softWrap: false,
-            ),
+        Align(
+          alignment: const Alignment(-0.2, 0.22),
+          child: FutureBuilder<User>(
+            future: futureUser,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  'To: ${snapshot.data!.username}',
+                  style: GoogleFonts.urbanist(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
           ),
         ),
+
         // image of envolope
         Pinned.fromPins(
           Pin(size: 54.0, start: 27.0),
@@ -142,20 +185,14 @@ class HomePage extends State<Home> {
           ),
         ),
         //Date of reception
-        const Align(
-          alignment: Alignment(-0.221, 0.278),
-          child: SizedBox(
-            width: 57.0,
-            height: 12.0,
-            child: Text(
-              'Dec 10,2022',
-              style: TextStyle(
-                fontFamily: 'BR Sonoma W03',
-                fontSize: 10,
-                color: Color(0xffb7b7b7),
-                fontWeight: FontWeight.w600,
-              ),
-              softWrap: false,
+        Align(
+          alignment: const Alignment(-0.22, 0.278),
+          child: Text(
+            DateFormat.MEd().format(DateTime.now()),
+            style: GoogleFonts.saira(
+              fontSize: 11,
+              color: Color(0xffb7b7b7),
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -178,37 +215,35 @@ class HomePage extends State<Home> {
           ),
         ),
         // Text username
-        const Align(
-          alignment: Alignment(-0.166, 0.5),
-          child: SizedBox(
-            width: 113.0,
-            height: 16.0,
-            child: Text(
-              'To : Firas ajengui',
-              style: TextStyle(
-                fontFamily: 'Urbane',
-                fontSize: 13,
-                color: Color(0xff000000),
-              ),
-              softWrap: false,
-            ),
+        Align(
+          alignment: const Alignment(-0.2, 0.52),
+          child: FutureBuilder<User>(
+            future: futureUser,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  'To: ${snapshot.data!.username}',
+                  style: GoogleFonts.urbanist(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
           ),
         ),
         //Date of recepetion
-        const Align(
-          alignment: Alignment(-0.221, 0.55),
-          child: SizedBox(
-            width: 57.0,
-            height: 12.0,
-            child: Text(
-              'Jan 10,2022',
-              style: TextStyle(
-                fontFamily: 'BR Sonoma W03',
-                fontSize: 10,
-                color: Color(0xffb7b7b7),
-                fontWeight: FontWeight.w600,
-              ),
-              softWrap: false,
+        Align(
+          alignment: const Alignment(-0.22, 0.58),
+          child: Text(
+            DateFormat.MEd().format(DateTime.now()),
+            style: GoogleFonts.saira(
+              fontSize: 11,
+              color: Color(0xffb7b7b7),
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
