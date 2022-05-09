@@ -4,14 +4,10 @@ import 'Home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-// Future<show> showUser() async {
-//   var url = "http://192.168.1.111/ViewUsername.php";
-//   final response = await http.get(Uri.parse(url));
-//   return show.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-// }
+//fetch email
 Future<Album> fetchAlbum() async {
   final response =
-      await http.get(Uri.parse('http://192.168.8.106/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.8.101/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -23,10 +19,28 @@ Future<Album> fetchAlbum() async {
     throw Exception('Failed to load album');
   }
 }
+//
 
+//fetch user
+Future<User> fetchUser() async {
+  final response =
+      await http.get(Uri.parse('http://192.168.8.101/ViewUsername.php'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return User.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+//* */
+
+//email
 class Album {
   final String email;
-
   const Album({
     required this.email,
   });
@@ -34,6 +48,20 @@ class Album {
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
       email: json['email'],
+    );
+  }
+}
+
+//username
+class User {
+  final String username;
+  const User({
+    required this.username,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      username: json['username'],
     );
   }
 }
@@ -54,11 +82,13 @@ class AccountState extends State<Account> {
   bool isChecked1 = false;
 
   late Future<Album> futureAlbum;
+  late Future<User> futureUser;
 
   @override
   void initState() {
     super.initState();
     futureAlbum = fetchAlbum();
+    futureUser = fetchUser();
   }
 
   @override
@@ -134,9 +164,30 @@ class AccountState extends State<Account> {
               )),
             )),
 
+        // Text Username from database
+        Align(
+          alignment: const Alignment(-0, -0.5),
+          child: FutureBuilder<User>(
+            future: futureUser,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(
+                  snapshot.data!.username,
+                  style: GoogleFonts.urbanist(
+                      fontSize: 19, fontWeight: FontWeight.w600),
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
+            },
+          ),
+        ),
+
         //Show email from database
         Align(
-          alignment: const Alignment(-0.7, -0.3),
+          alignment: const Alignment(-0.6, -0.25),
           child: FutureBuilder<Album>(
             future: futureAlbum,
             builder: (context, snapshot) {
@@ -156,7 +207,7 @@ class AccountState extends State<Account> {
         ),
 
         Align(
-            alignment: const Alignment(-0.77, -0.4),
+            alignment: const Alignment(-0.7, -0.32),
             child: Text(
               'Email :',
               style: GoogleFonts.hind(
@@ -167,7 +218,7 @@ class AccountState extends State<Account> {
             )),
         //CheckBox
         Align(
-          alignment: const Alignment(-0.85, -0.1),
+          alignment: const Alignment(-0.78, -0.1),
           child: Checkbox(
               checkColor: Colors.white,
               fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -179,7 +230,7 @@ class AccountState extends State<Account> {
               }),
         ),
         Align(
-            alignment: const Alignment(-0.47, -0.1),
+            alignment: const Alignment(-0.4, -0.1),
             child: Text(
               'Push Notification',
               style: GoogleFonts.urbanist(
@@ -190,7 +241,7 @@ class AccountState extends State<Account> {
             )),
         //email checkbox
         Align(
-          alignment: const Alignment(-0.85, 0),
+          alignment: const Alignment(-0.78, 0),
           child: Checkbox(
               checkColor: Colors.white,
               fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -202,7 +253,7 @@ class AccountState extends State<Account> {
               }),
         ),
         Align(
-            alignment: const Alignment(-0.35, 0),
+            alignment: const Alignment(-0.28, 0),
             child: Text(
               'Push Email notification',
               style: GoogleFonts.urbanist(
