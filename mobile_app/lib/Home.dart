@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 Future<User> fetchuser() async {
   final response =
-      await http.get(Uri.parse('http://192.168.8.101/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.1.2/ViewUsername.php'));
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
