@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:post_app/Home.dart';
 import 'package:post_app/login.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'dart:async';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 void main() {
   MQTTClientWrapper newclient = new MQTTClientWrapper();
@@ -82,6 +84,7 @@ class MQTTClientWrapper {
       final message =
           MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
       print('YOU GOT A NEW MESSAGE:');
+
       print(message);
     });
   }
@@ -114,6 +117,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final notifications = FlutterLocalNotificationsPlugin();
+
+  @override
+  void initState() {
+    super.initState();
+    final settingAndroid = AndroidInitializationSettings('adaptive_icon');
+
+    notifications.initialize(InitializationSettings(android: settingAndroid),
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future<dynamic> onSelectNotification(String) async => await Navigator.push(
+      context, MaterialPageRoute(builder: (context) => Home()));
+
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,

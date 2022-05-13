@@ -28,7 +28,7 @@ class _FeedbackState extends State<FeedbackHome> {
     String object = objectcontroller.text;
     String problem = problemcontroller.text;
 
-    var url = 'http://192.168.1.2/SubmitFeedback.php';
+    var url = 'http://192.168.1.4/SubmitFeedback.php';
     var response = await http.post(Uri.parse(url), body: {
       "object": object,
       "problem": problem,
