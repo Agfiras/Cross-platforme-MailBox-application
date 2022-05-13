@@ -7,7 +7,7 @@ import 'dart:convert';
 //fetch email
 Future<Album> fetchAlbum() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.2/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.1.4/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -24,7 +24,7 @@ Future<Album> fetchAlbum() async {
 //fetch user
 Future<User> fetchUser() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.2/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.1.4/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
