@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:post_app/onboarding.dart';
 import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'notficationService.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,7 +42,7 @@ Future login(BuildContext context) async {
       fontSize: 16.0,
     );
   } else {
-    var url = "http://192.168.1.4/login.php";
+    var url = "http://192.168.1.6/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": email.text,
       "password": password.text,
