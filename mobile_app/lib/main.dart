@@ -1,19 +1,24 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:post_app/Home.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:post_app/login.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'dart:async';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:post_app/notficationService.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:workmanager/workmanager.dart';
 
 void main() {
   MQTTClientWrapper newclient = new MQTTClientWrapper();
   newclient.prepareMqttClient();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
   runApp(const MyApp());
 }
 
+var low = false;
 // Mqtt config
 enum MqttCurrentConnectionState {
   IDLE,
@@ -34,7 +39,7 @@ class MQTTClientWrapper {
   void prepareMqttClient() async {
     _setupMqttClient();
     await _connectClient();
-    _subscribeToTopic('hivemq/test');
+    _subscribeToTopic('testtopic/firas');
   }
 
   Future<void> _connectClient() async {
@@ -52,6 +57,7 @@ class MQTTClientWrapper {
     if (client.connectionStatus?.state == MqttConnectionState.connected) {
       connectionState = MqttCurrentConnectionState.CONNECTED;
       print('client connected');
+      low = true;
     } else {
       print(
           'ERROR client connection failed - disconnecting, status is ${client.connectionStatus}');
@@ -76,6 +82,7 @@ class MQTTClientWrapper {
 
   void _subscribeToTopic(String topicName) {
     print('Subscribing to the $topicName topic');
+
     client.subscribe(topicName, MqttQos.atMostOnce);
 
     // print the message when it is received
@@ -84,7 +91,9 @@ class MQTTClientWrapper {
       final message =
           MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
       print('YOU GOT A NEW MESSAGE:');
-
+      // i want to push notifation
+      NotificationService()
+          .showNotification(1, 'check your mailbox', 'you have new mail', 1);
       print(message);
     });
   }
@@ -109,27 +118,17 @@ class MQTTClientWrapper {
 //* */
 class MyApp extends StatefulWidget {
   static const String title = 'Login';
-
   const MyApp({Key? key}) : super(key: key);
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  final notifications = FlutterLocalNotificationsPlugin();
-
   @override
   void initState() {
     super.initState();
-    final settingAndroid = AndroidInitializationSettings('adaptive_icon');
-
-    notifications.initialize(InitializationSettings(android: settingAndroid),
-        onSelectNotification: onSelectNotification);
+    tz.initializeTimeZones();
   }
-
-  Future<dynamic> onSelectNotification(String) async => await Navigator.push(
-      context, MaterialPageRoute(builder: (context) => Home()));
 
   @override
   Widget build(BuildContext context) => MaterialApp(
