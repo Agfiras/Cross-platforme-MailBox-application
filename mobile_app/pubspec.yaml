@@ -54,6 +54,7 @@ dependencies:
   path_provider: ^2.0.10
   workmanager: ^0.4.1
   timezone: ^0.8.0
+  notification_permissions: ^0.6.1
   
 
 dev_dependencies:

@@ -1,14 +1,15 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'Home.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 void main() {
-  runApp(FeedbackHome());
+  runApp(const FeedbackHome());
 }
 
 class FeedbackHome extends StatefulWidget {
-  FeedbackHome({Key? key}) : super(key: key);
+  const FeedbackHome({Key? key}) : super(key: key);
 
   @override
   State<FeedbackHome> createState() => _FeedbackState();
@@ -28,12 +29,11 @@ class _FeedbackState extends State<FeedbackHome> {
     String object = objectcontroller.text;
     String problem = problemcontroller.text;
 
-    var url = 'http://192.168.1.6/SubmitFeedback.php';
+    var url = 'http://192.168.8.105/SubmitFeedback.php';
     var response = await http.post(Uri.parse(url), body: {
       "object": object,
       "problem": problem,
     });
-    var data = json.decode(response.body);
     if (response.statusCode == 200) {
       setState(() {
         visible = false;
@@ -47,7 +47,7 @@ class _FeedbackState extends State<FeedbackHome> {
           actions: <Widget>[
             // ignore: deprecated_member_use
             FlatButton(
-              child: new Text("OK"),
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -81,7 +81,7 @@ class _FeedbackState extends State<FeedbackHome> {
         leading: IconButton(
           onPressed: (() {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Home()));
+                context, MaterialPageRoute(builder: (context) => const Home()));
           }),
           icon: const Icon(Icons.arrow_back_outlined),
           color: Colors.white,
@@ -107,7 +107,7 @@ class _FeedbackState extends State<FeedbackHome> {
           ),
         ),
         Align(
-          alignment: Alignment(0, 1),
+          alignment: const Alignment(0, 1.3),
           child: Container(
             width: 300,
             height: 300,
@@ -173,10 +173,11 @@ class _FeedbackState extends State<FeedbackHome> {
         ),
         // submit Button
         Align(
-          alignment: const Alignment(0, 0.1),
+          alignment: const Alignment(0, 0.19),
           child: ButtonTheme(
             minWidth: 200.0,
             height: 40,
+            // ignore: deprecated_member_use
             child: RaisedButton(
               onPressed: webcall,
               child: const Text(

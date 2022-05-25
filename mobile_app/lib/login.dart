@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, must_be_immutable, unnecessary_string_escapes
+// ignore_for_file: deprecated_member_use, must_be_immutable, unnecessary_string_escapes, avoid_print
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,17 +6,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:post_app/onboarding.dart';
 import 'dart:convert';
-import 'notficationService.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(LoginScreen());
+void main() => runApp(const LoginScreen());
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
@@ -30,9 +29,10 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => HomePagestate();
 }
 
-TextEditingController email = new TextEditingController();
-TextEditingController password = new TextEditingController();
+TextEditingController email = TextEditingController();
+TextEditingController password = TextEditingController();
 
+// Login Function
 Future login(BuildContext context) async {
   if (email.text == "" || password.text == "") {
     Fluttertoast.showToast(
@@ -42,7 +42,7 @@ Future login(BuildContext context) async {
       fontSize: 16.0,
     );
   } else {
-    var url = "http://192.168.1.6/login.php";
+    var url = "http://192.168.8.105/login.php";
     var response = await http.post(Uri.parse(url), body: {
       "email": email.text,
       "password": password.text,
@@ -63,6 +63,7 @@ Future login(BuildContext context) async {
     }
   }
 }
+//**/
 
 class HomePagestate extends State<HomePage> {
   @override

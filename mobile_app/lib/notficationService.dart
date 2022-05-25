@@ -1,3 +1,6 @@
+// ignore_for_file: file_names, unused_import, prefer_const_declarations
+
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -17,10 +20,10 @@ class NotificationService {
 
   Future<void> initNotification() async {
     final AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@drawable/adaptive_icon');
+        const AndroidInitializationSettings('@drawable/adaptive_icon');
 
     final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
+        const IOSInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,

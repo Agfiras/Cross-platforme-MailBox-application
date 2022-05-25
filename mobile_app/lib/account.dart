@@ -7,7 +7,7 @@ import 'dart:convert';
 //fetch email
 Future<Album> fetchAlbum() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.6/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.8.105/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -24,7 +24,7 @@ Future<Album> fetchAlbum() async {
 //fetch user
 Future<User> fetchUser() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.6/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.8.105/ViewUsername.php'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -128,7 +128,7 @@ class AccountState extends State<Account> {
         leading: IconButton(
           onPressed: (() {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Home()));
+                context, MaterialPageRoute(builder: (context) => const Home()));
           }),
           icon: const Icon(Icons.arrow_back_outlined),
           color: Colors.white,
@@ -154,7 +154,7 @@ class AccountState extends State<Account> {
           ),
         ),
         Align(
-            alignment: Alignment(0, -0.8),
+            alignment: const Alignment(0, -0.8),
             child: Container(
               width: 100,
               height: 100,
