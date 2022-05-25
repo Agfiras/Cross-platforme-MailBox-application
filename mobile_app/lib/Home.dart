@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unnecessary_this
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:post_app/navbar.dart';
@@ -6,9 +8,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+//fetch Username function
 Future<User> fetchuser() async {
   final response =
-      await http.get(Uri.parse('http://192.168.1.6/ViewUsername.php'));
+      await http.get(Uri.parse('http://192.168.8.105/ViewUsername.php'));
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
@@ -33,12 +36,13 @@ class User {
   }
 }
 
+//**/
 void main() {
-  runApp(Home());
+  runApp(const Home());
 }
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   HomePage createState() => HomePage();
@@ -53,7 +57,7 @@ class HomePage extends State<Home> {
     futureUser = fetchuser();
   }
 
-  Icon cusIcon = Icon(Icons.search);
+  Icon cusIcon = const Icon(Icons.search);
   Widget cusSearchBar = Text(
     "All Maills",
     style: GoogleFonts.urbanist(
@@ -63,7 +67,7 @@ class HomePage extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      drawer: NavBar(),
+      drawer: const NavBar(),
       appBar: AppBar(
         bottom: PreferredSize(
           preferredSize: const Size(5, 5),
@@ -82,7 +86,7 @@ class HomePage extends State<Home> {
             onPressed: () {
               setState(() {
                 if (this.cusIcon.icon == Icons.search) {
-                  this.cusIcon = Icon(Icons.cancel);
+                  this.cusIcon = const Icon(Icons.cancel);
                   this.cusSearchBar = TextField(
                     textInputAction: TextInputAction.go,
                     decoration: InputDecoration(
@@ -98,7 +102,7 @@ class HomePage extends State<Home> {
                     style: const TextStyle(color: Colors.white, fontSize: 16.0),
                   );
                 } else {
-                  this.cusIcon = Icon(Icons.search);
+                  this.cusIcon = const Icon(Icons.search);
                   this.cusSearchBar = Text("All Maills",
                       style: GoogleFonts.urbanist(
                           fontSize: 20,
@@ -118,7 +122,7 @@ class HomePage extends State<Home> {
       body: Stack(children: <Widget>[
         //image Box
         Container(
-          alignment: Alignment(0.01, -0.5),
+          alignment: const Alignment(0.01, -0.5),
           child: Container(
             width: 131.0,
             height: 221.0,
@@ -191,7 +195,7 @@ class HomePage extends State<Home> {
             DateFormat.MEd().format(DateTime.now()),
             style: GoogleFonts.saira(
               fontSize: 11,
-              color: Color(0xffb7b7b7),
+              color: const Color(0xffb7b7b7),
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -242,7 +246,7 @@ class HomePage extends State<Home> {
             DateFormat.MEd().format(DateTime.now()),
             style: GoogleFonts.saira(
               fontSize: 11,
-              color: Color(0xffb7b7b7),
+              color: const Color(0xffb7b7b7),
               fontWeight: FontWeight.w600,
             ),
           ),

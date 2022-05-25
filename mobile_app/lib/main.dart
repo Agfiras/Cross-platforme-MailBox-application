@@ -1,6 +1,6 @@
+// ignore_for_file: unused_import, constant_identifier_names, avoid_print
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:overlay_support/overlay_support.dart';
 import 'package:post_app/login.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
@@ -8,18 +8,17 @@ import 'dart:async';
 import 'package:post_app/notficationService.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:workmanager/workmanager.dart';
 
 void main() {
-  MQTTClientWrapper newclient = new MQTTClientWrapper();
+  MQTTClientWrapper newclient = MQTTClientWrapper();
   newclient.prepareMqttClient();
   WidgetsFlutterBinding.ensureInitialized();
+  //notification init
   NotificationService().initNotification();
   runApp(const MyApp());
 }
 
-var low = false;
-// Mqtt config
+// Mqtt configuration
 enum MqttCurrentConnectionState {
   IDLE,
   CONNECTING,
@@ -39,7 +38,8 @@ class MQTTClientWrapper {
   void prepareMqttClient() async {
     _setupMqttClient();
     await _connectClient();
-    _subscribeToTopic('testtopic/firas');
+    _subscribeToTopic('testtopic/Sensor');
+    _subscribeToTopic2('testtopic/Open');
   }
 
   Future<void> _connectClient() async {
@@ -57,7 +57,6 @@ class MQTTClientWrapper {
     if (client.connectionStatus?.state == MqttConnectionState.connected) {
       connectionState = MqttCurrentConnectionState.CONNECTED;
       print('client connected');
-      low = true;
     } else {
       print(
           'ERROR client connection failed - disconnecting, status is ${client.connectionStatus}');
@@ -98,6 +97,24 @@ class MQTTClientWrapper {
     });
   }
 
+  void _subscribeToTopic2(String topicName) {
+    print('Subscribing to the $topicName topic');
+
+    client.subscribe(topicName, MqttQos.atMostOnce);
+
+    // print the message when it is received
+    client.updates?.listen((List<MqttReceivedMessage<MqttMessage>>? c) {
+      final recMess = c![0].payload as MqttPublishMessage;
+      final message =
+          MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      print('YOU GOT A NEW MESSAGE:');
+      // i want to push notifation
+      NotificationService()
+          .showNotification(1, 'check your mailbox', 'your box is open', 1);
+      print(message);
+    });
+  }
+
   // callbacks for different events
   void _onSubscribed(String topic) {
     print('Subscription confirmed for topic $topic');
@@ -114,8 +131,8 @@ class MQTTClientWrapper {
     print('OnConnected client callback - Client connection was sucessful');
   }
 }
-
 //* */
+
 class MyApp extends StatefulWidget {
   static const String title = 'Login';
   const MyApp({Key? key}) : super(key: key);
@@ -137,6 +154,6 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSwatch()
                 .copyWith(primary: const Color(0xffffffff))),
-        home: LoginScreen(),
+        home: const LoginScreen(),
       );
 }
