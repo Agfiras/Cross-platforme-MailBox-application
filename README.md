@@ -46,7 +46,12 @@ The Smart Mailbox Solution is composed of three main components:
 
 ## 📸 Screenshots
 
-> *(Add screenshots or diagrams here if available)*
+<p align="center">
+  <img src="/Screenshots/PIR sensor.png" alt="PIR Sensor" width="500" />
+  <img src="/Screenshots/Mail box 4.png" alt="Mailbox" width="400" />
+  <img src="/Screenshots/Rotational desktop wireframing (2).png" alt="Mobile App" width="500" />
+  <img src="/Screenshots/MobileApp.png" alt="Mobile App" width="250" />
+</p>
 
 ---
 
